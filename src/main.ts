@@ -8,20 +8,20 @@ const randomBtn = document.getElementById("random-button") as HTMLButtonElement;
 let randomCocktails: Cocktail[] = [];
 
 function showRandomCocktail() {
-    for (let i = 0; i < cocktailMenu.length; i++) {
-        randomCocktails.push(cocktailMenu[Math.floor(Math.random() * cocktailMenu.length)]);
-    }
+    cockTaialsSections.innerHTML = '';
+
+    const randomCocktail = cocktailMenu[Math.floor(Math.random() * cocktailMenu.length)];
 
     let picture = document.createElement('img') as HTMLImageElement;
-    picture.src = randomCocktails[0].imageUrl;
+    picture.src = randomCocktail.imageUrl;
     cockTaialsSections.appendChild(picture);
 
     let cocktailName = document.createElement("h1") as HTMLHeadingElement;
-    cocktailName.innerText = randomCocktails[0].name;
+    cocktailName.innerText = randomCocktail.name;
     cockTaialsSections.appendChild(cocktailName);
 
     let price = document.createElement("p") as HTMLParagraphElement;
-    price.innerText = `€ ${randomCocktails[0].price.toString()}`
+    price.innerText = `€ ${randomCocktail.price.toString()}`;
     cockTaialsSections.appendChild(price);
 }
 
