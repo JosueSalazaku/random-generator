@@ -21,7 +21,7 @@ function showRandomCocktail() {
     cockTaialsSections.appendChild(cocktailName);
 
     let price = document.createElement("p") as HTMLParagraphElement;
-    price.innerText = randomCocktails[0].price.toString();
+    price.innerText = `€ ${randomCocktails[0].price.toString()}`
     cockTaialsSections.appendChild(price);
 }
 
