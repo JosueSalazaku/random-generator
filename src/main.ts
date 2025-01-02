@@ -5,6 +5,15 @@ import { cocktailMenu } from './cocktails';
 const cockTaialsSections = document.getElementById('cocktails-section') as HTMLElement;
 const randomBtn = document.getElementById("random-button") as HTMLButtonElement;
 
+
+function showRandomCocktail() {
+    
+
+
+}
+
+showRandomCocktail()
+
 randomBtn.addEventListener('click', () => {
     let randomCocktails: Cocktail[] = [];
     for (let i = 0; i < cocktailMenu.length; i++) {
