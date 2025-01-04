@@ -5,8 +5,6 @@ import { cocktailMenu } from './cocktails';
 const cockTaialsSections = document.getElementById('cocktails-section') as HTMLElement;
 const randomBtn = document.getElementById("random-button") as HTMLButtonElement;
 
-let randomCocktails: Cocktail[] = [];
-
 function showRandomCocktail() {
     cockTaialsSections.innerHTML = '';
 
@@ -17,10 +15,14 @@ function showRandomCocktail() {
     cockTaialsSections.appendChild(picture);
 
     let cocktailName = document.createElement("h1") as HTMLHeadingElement;
+    cocktailName.classList.add('text-3xl');
+    cocktailName.classList.add('py-2');
     cocktailName.innerText = randomCocktail.name;
     cockTaialsSections.appendChild(cocktailName);
 
     let price = document.createElement("p") as HTMLParagraphElement;
+    price.classList.add('text-3xl');
+    price.classList.add('py-2');
     price.innerText = `€ ${randomCocktail.price.toString()}`;
     cockTaialsSections.appendChild(price);
 }
