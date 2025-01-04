@@ -10,14 +10,19 @@
   <body>
     <div class="flex flex-col items-center w-screen" id="app">
       <nav class="w-screen flex flex-col bg-orange-600 px-4 py-1 text-[35px] text-white">
-        <h1>Cock Tails's & Co</h1>
+        <ul class="flex py-0 space-x-3">
+          <li><a href="#home" class="text-xl">Home</a></li>
+          <li><a href="#about" class="text-xl">About</a></li>
+          <li><a href="#contact" class="text-xl">Contact</a></li>
+        </ul>
       </nav>
-      <section class="h-[1000px] pt-7 mb-8 text-[20px]" id="cocktails-section">
+      <section class="h-900px] pt-7 mb-8 text-[20px]" id="cocktails-section">
       </section>
       <div>
         <button class="w-26 rounded-lg text-white bg-orange-600 text-[30px] px-2 py-1" id="random-button">CHOOSE</button>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="src/route.ts"></script>
   </body>
 </html>
