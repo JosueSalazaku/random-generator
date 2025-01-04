@@ -1,32 +1,29 @@
 import './style.css'
-import { Cocktail } from './cocktails';
-import { cocktailMenu } from './cocktails';
 
-const cockTaialsSections = document.getElementById('cocktails-section') as HTMLElement;
-const randomBtn = document.getElementById("random-button") as HTMLButtonElement;
+import { home, setupRandomButton } from './views/home';
+import { about } from './views/about';
+import { contact } from './views/conctact';
 
-function showRandomCocktail() {
-    cockTaialsSections.innerHTML = '';
+const routes: { [key: string]: string } = {
+  home: home,
+  about: about,
+  contact: contact,
+};
 
-    const randomCocktail = cocktailMenu[Math.floor(Math.random() * cocktailMenu.length)];
+function loadRoute() {
+  const route = window.location.hash.slice(1) || 'home';
+  const content = routes[route] || routes['home'];
 
-    let picture = document.createElement('img') as HTMLImageElement;
-    picture.src = randomCocktail.imageUrl;
-    cockTaialsSections.appendChild(picture);
-
-    let cocktailName = document.createElement("h1") as HTMLHeadingElement;
-    cocktailName.classList.add('text-3xl');
-    cocktailName.classList.add('py-2');
-    cocktailName.innerText = randomCocktail.name;
-    cockTaialsSections.appendChild(cocktailName);
-
-    let price = document.createElement("p") as HTMLParagraphElement;
-    price.classList.add('text-3xl');
-    price.classList.add('py-2');
-    price.innerText = `€ ${randomCocktail.price.toString()}`;
-    cockTaialsSections.appendChild(price);
+  const app = document.getElementById("app");
+  if (app) {
+    app.innerHTML = content;
+  }
+    
+  if (route === 'home') {
+    setupRandomButton(); 
+  }
 }
 
-randomBtn.addEventListener('click', () => {
-    showRandomCocktail()
-})
+
+window.addEventListener("hashchange", loadRoute);
+loadRoute();
