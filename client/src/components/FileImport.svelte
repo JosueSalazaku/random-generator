@@ -1,4 +1,6 @@
 <script lang="ts">
+    import axios from "axios";
+    
     let file: File | null = null;
     let dragActive: boolean = false;
     let errorMessage: string = "";
@@ -22,7 +24,7 @@
           errorMessage = "";
         } else {
           file = null;
-          errorMessage = "Invalid file type. Please upload an .xls file.";
+          errorMessage = "Invalid file type. Please upload an .xls or xlsx file.";
         }
       }
     }
@@ -36,7 +38,7 @@
           errorMessage = "";
         } else {
           file = null;
-          errorMessage = "Invalid file type. Please upload an .xls file.";
+          errorMessage = "Invalid file type. Please upload an .xls or xlsx file.";
         }
       }
     }
@@ -50,6 +52,28 @@
       const validMimeType = file.type === "application/vnd.ms-excel";
       const validExtension = file.name.toLowerCase().endsWith(".xls") || file.name.toLowerCase().endsWith(".xlsx")
       return validMimeType || validExtension;
+    }
+
+    async function HanleFileUpload() {
+        if (!file) {
+            errorMessage = "No file selected to upload.";
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append("file", file);
+            
+        try {
+    const response = await axios.post("http://localhost:3000", formData);
+    if (response.status !== 200) {
+        throw new Error(`Server Error: ${response.status}`);
+    }
+
+    const data = response.data;
+    console.log("File uploaded successfully:", data);
+        } catch (error) {
+            errorMessage = "File upload failed.";
+        }
     }
     </script>
     
@@ -93,4 +117,5 @@
         <h1 class="font-bold">{file.name}</h1>
       {/if}
     </section>
+    <button on:click={HanleFileUpload} aria-label="Upload File">Upload</button>
     
