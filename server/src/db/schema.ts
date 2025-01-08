@@ -17,5 +17,3 @@ export const users = pgTable('users', {
   emailIndex: uniqueIndex('emailIndex').on(table.email),
     clerkIdUniqueIndex: uniqueIndex('clerk_id_unique').on(table.clerkId),
 }));
-
-
