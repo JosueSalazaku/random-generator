@@ -64,7 +64,7 @@
         formData.append("file", file);
             
         try {
-    const response = await axios.post("http://localhost:3000", formData);
+    const response = await axios.post("http://localhost:3000/files/upload", formData);
     if (response.status !== 200) {
         throw new Error(`Server Error: ${response.status}`);
     }
