@@ -2,7 +2,7 @@
     import FileImport from "../components/FileImport.svelte";
   </script>
   
-  <div class="flex flex-col items-center justify-center w-full gap-3 py-12">
+  <div class="flex flex-col items-center justify-center w-full gap-4 py-12">
     <h1 class="py-5 text-4xl font-bold text-center">
       Create a QR Code for Your Menu Randomizer
     </h1>
@@ -12,4 +12,3 @@
     </p>
     <FileImport />
   </div>
-  

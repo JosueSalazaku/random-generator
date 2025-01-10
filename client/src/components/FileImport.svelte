@@ -93,6 +93,7 @@
             on:drop={handleDrop}
             class:bg-violet-700={dragActive}
             class="flex flex-col items-center justify-center gap-1 transition border rounded-full bg-violet-600 w-96 h-96 hover:bg-violet-800 hover:border-4 delay-2000"
+            class:bg-violet-800={file}
         >
             <svg
                 fill="#ffff"
