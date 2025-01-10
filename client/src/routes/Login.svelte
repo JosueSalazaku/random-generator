@@ -1,1 +1,1 @@
-<main>LOGIN</main>
+<main class="">LOGIN</main>

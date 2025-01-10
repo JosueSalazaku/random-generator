@@ -85,9 +85,9 @@
 
     </script>
     
-    <main class="flex flex-col items-center justify-center gap-3 w-96 ">
+    <main class="flex flex-col items-center justify-center gap-5 w-96 ">
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
         <section
-            role="region"
             on:dragover={handleDragOver}
             on:dragleave={handleDragLeave}
             on:drop={handleDrop}
