@@ -4,6 +4,7 @@
     let file: File | null = null;
     let dragActive: boolean = false;
     let errorMessage: string = "";
+    let successMessage: string = ""
     
     function handleDragOver(event: DragEvent) {
       event.preventDefault();
@@ -54,27 +55,34 @@
       return validMimeType || validExtension;
     }
 
-    async function HanleFileUpload() {
-        if (!file) {
-            errorMessage = "No file selected to upload.";
-            return;
-        }
-        
-        const formData = new FormData();
-        formData.append("file", file);
-            
-        try {
-    const response = await axios.post("http://localhost:3000/files/uploads", formData);
-    if (response.status !== 200) {
-        throw new Error(`Server Error: ${response.status}`);
+    async function HandleFileUpload() {
+    if (!file) {
+        errorMessage = "No file selected to upload.";
+        successMessage = ""; 
+        return;
     }
+    
+    const formData = new FormData();
+    formData.append("file", file);
+    
+    try {
+        const response = await axios.post("http://localhost:3000/files/uploads", formData);
 
-    const data = response.data;
-    console.log("File uploaded successfully:", data);
-        } catch (error) {
-            errorMessage = "File upload failed.";
+        if (response.status === 200 || response.status === 201) {
+            const data = response.data;
+            console.log("File uploaded successfully:", data);
+            successMessage = "File uploaded successfully";
+            errorMessage = "";
+        } else {
+            throw new Error(`Server Error: ${response.status}`);
         }
+    } catch (error) {
+        console.error("Upload error:", error);
+        errorMessage = "File upload failed.";
+        successMessage = ""; 
     }
+}
+
     </script>
     
     <main class="flex flex-col items-center justify-center gap-3 w-96 ">
@@ -110,13 +118,12 @@
                 hidden
                 on:change={handleFileChange}
             />
-        
-            {#if errorMessage}
-                <p class="mt-2 text-sm text-center text-red-600">{errorMessage}</p>
-            {:else if file}
-                <p class="mt-2 text-sm text-center text-indigo-950">Selected File:</p>
-                <h1 class="font-bold">{file.name}</h1>
-            {/if}
+        {#if errorMessage}
+          <p class="mt-2 text-sm text-center text-red-600">{errorMessage}</p>
+        {:else if file}
+          <p class="mt-2 text-sm text-center text-indigo-950">Selected File:</p>
+          <h1 class="font-bold">{file.name}</h1>
+        {/if}
         </section>
-        <button on:click={HanleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
+        <button on:click={HandleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
     </main>
