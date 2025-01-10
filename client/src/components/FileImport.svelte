@@ -125,5 +125,8 @@
           <h1 class="font-bold">{file.name}</h1>
         {/if}
         </section>
+        {#if successMessage}
+          <p class="mt-2 text-xl text-center text-blue-200">{successMessage}</p>
+        {/if}
         <button on:click={HandleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
     </main>
