@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import xlsx from 'node-xlsx';
-import fs from 'fs';
+import * as fs from 'fs';
 
 @Injectable()
 export class FilesService {
@@ -21,10 +21,20 @@ export class FilesService {
     }
   }
 
-  ConvertFile(file: Express.Multer.File) {
+  async ConvertFile(file: Express.Multer.File) {
     try {
-      const worksheetFromFile = xlsx.parse(fs.readFileSync(`${file.path}`));
-      return worksheetFromFile[0].data;
+      const filePath = `${file.destination}/${file.filename}`;
+      if (fs.existsSync(filePath)) {
+        const fileData = await fs.promises.readFile(filePath);
+        const worksheetFromFile = xlsx.parse(fileData);
+
+        console.log(file.path);
+        console.log(worksheetFromFile[0].data);
+      } else {
+        console.error(`File does not exist: ${filePath}`);
+      }
+
+      // worksheetFromFile[0].data
     } catch (error) {
       console.error('File conversion failed:', error);
       throw error;

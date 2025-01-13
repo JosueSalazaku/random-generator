@@ -33,6 +33,14 @@ export class FilesController {
     }),
   )
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    return await this.fileService.uploadFile(file);
+    try {
+      const uploadResult = await this.fileService.uploadFile(file);
+      const jsonData = await this.fileService.ConvertFile(file);
+      console.log('Converted file', jsonData);
+      return uploadResult;
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      throw error;
+    }
   }
 }
