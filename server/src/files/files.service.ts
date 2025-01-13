@@ -24,7 +24,7 @@ export class FilesService {
   ConvertFile(file: Express.Multer.File) {
     try {
       const worksheetFromFile = xlsx.parse(fs.readFileSync(`${file.path}`));
-      return worksheetFromFile;
+      return worksheetFromFile[0].data;
     } catch (error) {
       console.error('File conversion failed:', error);
       throw error;
