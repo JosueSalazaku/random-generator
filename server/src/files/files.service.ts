@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import xlsx from 'node-xlsx';
+import fs from 'fs';
 
 @Injectable()
 export class FilesService {
@@ -15,6 +17,16 @@ export class FilesService {
       };
     } catch (error) {
       console.error('File upload failed:', error);
+      throw error;
+    }
+  }
+
+  ConvertFile(file: Express.Multer.File) {
+    try {
+      const worksheetFromFile = xlsx.parse(fs.readFileSync(`${file.path}`));
+      return worksheetFromFile;
+    } catch (error) {
+      console.error('File conversion failed:', error);
       throw error;
     }
   }
