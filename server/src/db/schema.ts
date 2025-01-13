@@ -5,6 +5,7 @@ import {
   serial,
   text,
   varchar,
+  jsonb,
 } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
@@ -13,7 +14,8 @@ export const users = pgTable('users', {
   email: text('email').notNull(),
   name: text('name').notNull(),
   imageUrl: text('picture_url').notNull(),
+  fileData: jsonb('file_data'),
 }, (table) => ({
   emailIndex: uniqueIndex('emailIndex').on(table.email),
-    clerkIdUniqueIndex: uniqueIndex('clerk_id_unique').on(table.clerkId),
+  clerkIdUniqueIndex: uniqueIndex('clerk_id_unique').on(table.clerkId),
 }));
