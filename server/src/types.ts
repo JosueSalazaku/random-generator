@@ -4,4 +4,5 @@ export interface User {
   email: string;
   name: string;
   imageUrl: string;
+  fileData: Record<string, any> | null;
 }
