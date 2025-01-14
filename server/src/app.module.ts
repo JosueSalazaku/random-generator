@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { FilesService } from './files/files.service';
 import { FilesModule } from './files/files.module';
+import { ClerkClientProvider } from './provider/clerk-client.provider';
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { FilesModule } from './files/files.module';
     FilesModule,
   ],
   controllers: [AppController],
-  providers: [AppService, FilesService],
+  providers: [AppService, FilesService, ClerkClientProvider],
 })
 export class AppModule {}
