@@ -34,9 +34,17 @@ export class FilesService {
         const fileData = await fs.promises.readFile(filePath);
         const worksheetFromFile = xlsx.parse(fileData);
 
-        console.log(worksheetFromFile[0].data);
+        const transformedData = worksheetFromFile[0].data
+          .slice(1)
+          .map((row) => ({
+            name: row[0],
+            price: row[1],
+            baseLiquor: row[2],
+          }));
 
-        return worksheetFromFile[0].data;
+        console.log(transformedData);
+
+        return transformedData;
       } else {
         console.error(`File does not exist: ${filePath}`);
       }
