@@ -36,6 +36,7 @@ export class FilesController {
     try {
       const uploadResult = await this.fileService.uploadFile(file);
       const jsonData = await this.fileService.ConvertFile(file);
+      await this.fileService.saveFileDataInDB(jsonData);
       console.log('Converted file', jsonData);
       return uploadResult;
     } catch (error) {
