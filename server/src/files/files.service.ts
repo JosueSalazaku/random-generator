@@ -40,6 +40,8 @@ export class FilesService {
             name: row[0],
             price: row[1],
             baseLiquor: row[2],
+            category: row[3],
+            image: row[4],
           }));
 
         console.log(transformedData);
