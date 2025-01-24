@@ -1,15 +1,22 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
+import * as schema from './../db/schema';
 
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  // @Post('/')
-  // async addProducts() {
-  //   try {
-  //   } catch (error) {}
-  // }
+  @Post('/')
+  async createProduct(@Body() addedProduct: Partial<typeof schema.products>) {
+    try {
+      const newProduct = await this.productsService.createProduct(addedProduct);
+      console.log('Successfully Created new products:', newProduct);
+      return newProduct;
+    } catch (error) {
+      console.error('Error creating product:', error);
+      throw error;
+    }
+  }
 
   @Get('/')
   async getAllProducts() {
