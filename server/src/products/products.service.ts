@@ -3,6 +3,7 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { DATABASE } from 'src/db/database.module';
 import * as schema from './../db/schema';
 import { eq } from 'drizzle-orm';
+import { Product } from 'type';
 
 @Injectable()
 export class ProductsService {
@@ -23,7 +24,7 @@ export class ProductsService {
       .then((products) => products[0]);
   }
 
-  async createProduct(createProduct: Partial<typeof schema.products>) {
+  async createProduct(createProduct: Product) {
     try {
       return await this.db.insert(schema.products).values(createProduct);
     } catch (error) {
