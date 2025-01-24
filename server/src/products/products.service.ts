@@ -22,4 +22,13 @@ export class ProductsService {
       .limit(1)
       .then((products) => products[0]);
   }
+
+  async createProduct(createProduct: Partial<typeof schema.products>) {
+    try {
+      return await this.db.insert(schema.products).values(createProduct);
+    } catch (error) {
+      console.error('Error creating product:', error);
+      throw error;
+    }
+  }
 }

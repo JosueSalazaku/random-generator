@@ -1,11 +1,9 @@
-
 export interface Product {
-    id: number;
+  id: number;
+  fileData: {
     name: string;
-    fileData: {
-      name: string;
-      price: number;
-      baseLiquor: string;
-      image: string;
-    }[];
-  }
+    price: number;
+    baseLiquor: string;
+    image: string;
+  }[];
+}
