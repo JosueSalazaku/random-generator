@@ -48,10 +48,7 @@ export class FilesService {
 
   async saveFileDataInDB(jsonData: any) {
     try {
-      await this.db.insert(schema.products).values({
-        name: 'some name',
-        fileData: jsonData,
-      });
+      await this.db.insert(schema.products).values({ fileData: jsonData });
     } catch (error) {
       console.error('Failed to save file data in DB:', error);
     }

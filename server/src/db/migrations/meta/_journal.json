@@ -15,6 +15,13 @@
       "when": 1737751848226,
       "tag": "0001_spicy_chamber",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1737754325498,
+      "tag": "0002_free_brood",
+      "breakpoints": true
     }
   ]
 }
