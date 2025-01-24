@@ -8,6 +8,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { FilesService } from './files/files.service';
 import { FilesModule } from './files/files.module';
 import { ClerkClientProvider } from './provider/clerk-client.provider';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { ClerkClientProvider } from './provider/clerk-client.provider';
     }),
     FilesModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [AppService, FilesService, ClerkClientProvider],
 })
 export class AppModule {}

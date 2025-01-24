@@ -9,5 +9,5 @@ export const ClerkClientProvider = {
       secretKey: configService.get('CLERK_SECRET_KEY'),
     });
   },
-  Inject: [ConfigService],
+  inject: [ConfigService],
 };
