@@ -8,6 +8,13 @@
       "when": 1736373345031,
       "tag": "0000_spotty_leader",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1737751848226,
+      "tag": "0001_spicy_chamber",
+      "breakpoints": true
     }
   ]
 }

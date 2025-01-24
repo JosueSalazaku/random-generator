@@ -1,9 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import xlsx from 'node-xlsx';
 import * as fs from 'fs';
+import * as schema from './../db/schema';
+import { DATABASE } from 'src/db/database.module';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 @Injectable()
 export class FilesService {
+  constructor(
+    @Inject(DATABASE) private readonly db: NodePgDatabase<typeof schema>,
+  ) {}
   async uploadFile(file: Express.Multer.File) {
     try {
       const filePath = `uploads/${file.filename}`;
@@ -37,6 +43,14 @@ export class FilesService {
     } catch (error) {
       console.error('File conversion failed:', error);
       throw error;
+    }
+  }
+
+  async saveFileDataInDB(jsonData: any) {
+    try {
+      await this.db.insert(schema.products).values(jsonData);
+    } catch (error) {
+      console.error('Failed to save file data in DB:', error);
     }
   }
 }

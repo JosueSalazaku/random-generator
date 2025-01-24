@@ -118,15 +118,15 @@ async function HandleFileUpload() {
                     hidden
                     on:change={handleFileChange}
                     />
-                {#if errorMessage}
-                <p class="mt-2 text-sm text-center text-red-600">{errorMessage}</p>
-                {:else if file}
-                <p class="mt-2 text-sm text-center text-indigo-950">Selected File:</p>
-                <h1 class="font-bold">{file.name}</h1>
-                {/if}
-                </section>
-                {#if successMessage}
-                <p class="mt-2 text-xl text-center text-blue-200">{successMessage}</p>
-                {/if}
-                <button on:click={HandleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
+         {#if errorMessage}
+             <p class="mt-2 text-sm text-center text-red-600">{errorMessage}</p>
+         {:else if file}
+            <p class="mt-2 text-sm text-center text-indigo-950">Selected File:</p>
+            <h1 class="font-bold">{file.name}</h1>
+         {/if}
+    </section>
+    {#if successMessage}
+        <p class="mt-2 text-xl text-center text-blue-200">{successMessage}</p>
+    {/if}
+    <button on:click={HandleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
 </main>
