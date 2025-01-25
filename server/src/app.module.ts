@@ -12,6 +12,9 @@ import { AuthController } from './auth/auth.controller';
 import { ProductsController } from './products/products.controller';
 import { ProductsService } from './products/products.service';
 import { ProductsModule } from './products/products.module';
+import { QrController } from './qr/qr.controller';
+import { QrService } from './qr/qr.service';
+import { QrModule } from './qr/qr.module';
 
 @Module({
   imports: [
@@ -25,8 +28,20 @@ import { ProductsModule } from './products/products.module';
     }),
     FilesModule,
     ProductsModule,
+    QrModule,
   ],
-  controllers: [AppController, AuthController, ProductsController],
-  providers: [AppService, FilesService, ClerkClientProvider, ProductsService],
+  controllers: [
+    AppController,
+    AuthController,
+    ProductsController,
+    QrController,
+  ],
+  providers: [
+    AppService,
+    FilesService,
+    ClerkClientProvider,
+    ProductsService,
+    QrService,
+  ],
 })
 export class AppModule {}
