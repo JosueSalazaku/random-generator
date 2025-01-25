@@ -1,5 +1,6 @@
 <script lang="ts">
 import axios from "axios";
+import * as qrcode from 'qrcode';
 
 let file: File | null = null;
 let dragActive: boolean = false;

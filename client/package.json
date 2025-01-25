@@ -12,6 +12,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tsconfig/svelte": "^5.0.4",
+    "@types/qrcode": "^1.5.5",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "svelte": "^5.15.0",
@@ -24,6 +25,8 @@
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "lucide-svelte": "^0.471.0",
+    "qrcode": "^1.5.4",
+    "svelte-qrcode": "^1.0.1",
     "svelte-spa-router": "^4.0.1"
   }
 }
