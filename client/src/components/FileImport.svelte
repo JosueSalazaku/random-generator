@@ -6,6 +6,8 @@ let file: File | null = null;
 let dragActive: boolean = false;
 let errorMessage: string = "";
 let successMessage: string = ""
+let qrCodeUrl = '';
+
 
 function handleDragOver(event: DragEvent) {
     event.preventDefault();
@@ -74,6 +76,10 @@ async function HandleFileUpload() {
             console.log("File uploaded successfully:", data);
             successMessage = "File uploaded successfully";
             errorMessage = "";
+
+            const uniqId = data.uniqId 
+            const url = await qrcode.toDataURL('http://localhost:5173/#/fileData/:data');
+            qrCodeUrl = url;
         } else {
             throw new Error(`Server Error: ${response.status}`);
         }
@@ -128,6 +134,9 @@ async function HandleFileUpload() {
     </section>
     {#if successMessage}
         <p class="mt-2 text-xl text-center text-blue-200">{successMessage}</p>
+    {/if}
+    {#if qrCodeUrl}
+    <img src={qrCodeUrl} alt="QR Code" class="flex size-32" />
     {/if}
     <button on:click={HandleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
 </main>
