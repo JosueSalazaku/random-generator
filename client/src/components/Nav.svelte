@@ -2,7 +2,7 @@
 import { link } from 'svelte-spa-router';
 import { onMount } from 'svelte';
 import { X } from 'lucide-svelte';
-import { AlignJustify } from 'lucide-svelte';
+// import { AlignJustify } from 'lucide-svelte';
 
 let isMobile = false;
 let isOpen = false;
@@ -25,8 +25,7 @@ onMount(() => {
 {#if isMobile}
 <nav class="flex flex-row items-center justify-between w-screen px-4 py-4 text-2xl">
     <a use:link href="/" class="font-bold">BiteSpin</a>
-    <button on:click={handleDropDownCLick}><AlignJustify size="30" /></button>
-
+    <!-- <button on:click={handleDropDownCLick}><AlignJustify size="30" /></button> -->
     {#if isOpen}
     <div class="fixed inset-0 z-50 flex flex-col items-center justify-center opacity-100 ju jus jush-screen bg-violet-800">
         <div class="absolute flex flex-row items-center justify-between w-screen px-4 top-4 ">
@@ -36,7 +35,8 @@ onMount(() => {
         <div class="flex flex-col items-center justify-center gap-4 text-4xl">
             <a on:click={handleDropDownCLick} use:link href="/">BiteSpin</a>
             <!-- <a on:click={handleDropDownCLick} use:link href="/about">About</a>
-            <a on:click={handleDropDownCLick} use:link href="/login">Login/ Sign Up</a> -->
+            <a on:click={handleDropDownCLick} use:link href="/login">Login/ Sign Up</a>
+            <a on:click={handleDropDownCLick} use:link href='/fileData/:data'>data</a> -->
         </div>
     </div>
     {/if}

@@ -10,7 +10,7 @@
     "/": Home,
     "/about": About,
     "/login": Login,
-    '/fileData/:data': FileData, // Dyanamc route
+    '/fileData/:data': FileData, 
   };
   
 </script>
