@@ -4,11 +4,13 @@
   import Login from "./routes/Login.svelte";
   import Nav from "./components/Nav.svelte";
   import Home from "./routes/Home.svelte";
+  import FileData from "./routes/FileData/Page.svelte"
   
   const routes = {
     "/": Home,
     "/about": About,
     "/login": Login,
+    '/fileData/:data': FileData, // Dyanamc route
   };
   
 </script>
