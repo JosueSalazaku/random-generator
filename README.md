@@ -20,13 +20,17 @@ Develop a software solution that:
 
 #### **Core Features**
 1. **Menu Data Input**:
-   - Horeca owners can add menu items with details (name, price, category).
-2. **Randomizer Functionality**:
-   - Customers can click a button to get a random suggestion from the menu.
-3. **Optional Filters**:
-   - Allow filtering by category (e.g., drinks, food) or price range.
-4. **User Interface**:
-   - Clear and attractive display of the randomly selected item.
+  - Horeca owners can upload a menu file containing: Name, Price, and Picture (optional: Category and Ingredients).
+2. **Saved Menu Data**:
+  - Extract and save the data from the uploaded menu file.
+3. **Generate QR Code**:
+  - Create dynamic pages and store the URL in a generated QR code.
+4. **Randomizer Functionality**:
+  - Customers can click a button to get a random suggestion from the menu.
+5. **Optional Filters**:
+  - Allow filtering by category (e.g., drinks, food) or price range.
+6. **User Interface**:
+  - Provide a clear and attractive display of the randomly selected item.
 
 #### **Accessibility Features**
 - Keyboard navigability for buttons and inputs.
@@ -34,6 +38,10 @@ Develop a software solution that:
 - High contrast and scalable text for visibility.
 
 #### **Portability Features**
+I am considering two options for implementing this feature:
+1. A component that can be embedded and used on various websites.
+2. A standalone web application that horeca establishments can use directly.
+
 - The component must be embeddable in various website platforms, including:
   - **WordPress** (via shortcode or plugin integration).
   - **Wix** (via custom widget or iframe).
@@ -42,125 +50,31 @@ Develop a software solution that:
 
 ---
 
-### **3. Development Plan**
+### **3. Development Stack and Plan**
 
-#### **Step 1: Define Data Structure**
-Structure the menu data to be flexible and minimal:
-```json
-{
-  "menu": [
-    { "id": "1", "name": "Mojito", "price": 12, "category": "Drink" },
-    { "id": "2", "name": "Nachos", "price": 8, "category": "Food" }
-  ]
-}
-```
+#### **Proof of Concept**
+For the proof of concept, I am using the following technologies:
 
-#### **Step 2: Build Menu Management System**
-- Create a simple form for horeca owners to input menu data.
-- Store data locally (e.g., JSON) or externally (e.g., cloud database).
+- **Frontend**: Svelte
+  - Svelte is chosen for its simplicity and performance benefits. It allows us to build a reactive user interface with minimal boilerplate code.
+- **Backend**: NestJS
+  - NestJS provides a robust framework for building scalable server-side applications. It supports TypeScript out of the box and follows a modular architecture.
+- **Database**: PostgreSQL
+  - PostgreSQL is a powerful, open-source relational database system. It is known for its reliability and performance.
+- **ORM**: Drizzle
+  - Drizzle is used for database migrations and querying. It provides a type-safe and flexible way to interact with the database.
+- **Styling**: Tailwind CSS
+  - Tailwind CSS is a utility-first CSS framework that allows for rapid UI development. It provides a set of predefined classes to style the application efficiently.
 
-#### **Step 3: Develop Randomizer Logic**
-- Implement a random selection function that picks an item from the menu.
-- Add optional filters for category and price range.
-
-#### **Step 4: Design User Interface**
-- Develop a user-friendly layout for both horeca owners (menu management) and customers (randomizer feature).
-
-#### **Step 5: Ensure Portability**
-- Use a universal embedding approach (e.g., script tag, iframe, or platform-specific integration).
-
-#### **Step 6: Test Across Platforms**
-- Test the component on WordPress, Wix, static HTML, and React sites.
-- Verify accessibility features and performance.
+The combination of these technologies ensures a modern, efficient, and scalable solution for the Horeca Randomizer Component.
 
 ---
 
 ### **4. Visual Sketch and Layout**
 
-#### **Owner View (Menu Management)**
-- **Form Layout**:
-  - Input fields: Name, Price, Category (dropdown: Drink/Food).
-  - "Add Item" button.
-- **List of Menu Items**:
-  - Display existing items with edit/delete options.
-
-#### **Customer View (Randomizer)**
-- **Randomizer Button**:
-  - Central button labeled "Surprise Me!"
-- **Result Display**:
-  - Card showing:
-    - Item Name
-    - Price
-    - Category
-- **Filters** (optional):
-  - Dropdown for category and slider for price range.
-
-#### **Sketch**
-1. **Menu Entry**:
-```
-+------------------------+
-| Add Menu Item          |
-|------------------------|
-| Name: _____________    |
-| Price: _____________   |
-| Category: [Drink/Food] |
-| [Add Item]             |
-+------------------------+
-
-Existing Items:
-1. Mojito ($12) [Edit] [Delete]
-2. Nachos ($8) [Edit] [Delete]
-```
-
-2. **Randomizer**:
-```
-+-------------------+
-| [Surprise Me!]    |
-|-------------------|
-| Mojito            |
-| Price: $12        |
-| Category: Drink   |
-+-------------------+
-```
-
----
+#
 
 ### **5. Portability Across Platforms**
-
-#### **Embedding Methods**
-1. **WordPress**:
-   - Package as a plugin with shortcode support.
-   - Example: `[randomizer_menu]`
-2. **Wix**:
-   - Create a custom widget using Wix’s Velo platform.
-   - Alternatively, embed using an iframe.
-3. **Static HTML Sites**:
-   - Provide an embeddable script tag.
-   - Example:
-     ```html
-     <div id="menu-randomizer"></div>
-     <script src="https://example.com/randomizer.js"></script>
-     ```
-4. **React**:
-   - Distribute as an npm package.
-   - Example usage:
-     ```jsx
-     import { Randomizer } from 'horeca-randomizer';
-
-     <Randomizer menu={menuData} />;
-     ```
-
-#### **Steps to Ensure Compatibility**
-1. **Iframe Solution**:
-   - Use an iframe to encapsulate the component, ensuring it’s isolated from the host site’s styles and scripts.
-   - Example:
-     ```html
-     <iframe src="https://example.com/randomizer" style="width:100%;height:400px;"></iframe>
-     ```
-2. **Responsive Design**:
-   - Ensure the component’s layout is fully responsive and adjusts to different site dimensions.
-3. **Platform-Specific Instructions**:
-   - Provide clear guides for integration on WordPress, Wix, static sites, and React apps.
 
 ---
 
@@ -184,3 +98,6 @@ Existing Items:
 
 ---
 
+### **User Account and Menu Management**
+
+Eventually, users will need to log in as a user/horeca to input their menu. The user account will hold and save that menu for possible future uses, as menus often change with seasons. Users can also create randomizers based on categories such as food, drinks, snacks, and so on. All this information will be stored in the database connected to the user account. Additionally, the dynamic pages generated by the QR code for the menu/data can later be customized to fit the brand of the restaurant/horeca.
