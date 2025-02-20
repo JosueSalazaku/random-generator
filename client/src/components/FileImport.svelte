@@ -1,5 +1,6 @@
 <script lang="ts">
 import axios from "axios";
+import { FileUp } from "lucide-svelte";
 import * as qrcode from 'qrcode';
 
 let file: File | null = null;
@@ -101,16 +102,7 @@ async function HandleFileUpload() {
         class="flex flex-col items-center justify-center gap-1 transition border rounded-full bg-violet-600 w-96 h-96 hover:bg-violet-800 hover:border-4 delay-2000"
         class:bg-violet-800={file}
         >
-        <svg
-            fill="#ffff"
-            width="80px"
-            height="80px"
-            viewBox="0 0 256 256"
-            id="Flat"
-            xmlns="http://www.w3.org/2000/svg"
-            >
-            <path d="M210.82861,69.17139l-40-40A4.00116,4.00116,0,0,0,168,28H88A12.01375,12.01375,0,0,0,76,40V60H56A12.01375,12.01375,0,0,0,44,72V216a12.01375,12.01375,0,0,0,12,12H168a12.01375,12.01375,0,0,0,12-12V196h20a12.01375,12.01375,0,0,0,12-12V72A4.00116,4.00116,0,0,0,210.82861,69.17139ZM172,216a4.00458,4.00458,0,0,1-4,4H56a4.00458,4.00458,0,0,1-4-4V72a4.00458,4.00458,0,0,1,4-4h78.34326L172,105.65674Zm32-32a4.00458,4.00458,0,0,1-4,4H180V104a4.00116,4.00116,0,0,0-1.17139-2.82861l-40-40A4.00116,4.00116,0,0,0,136,60H84V40a4.00458,4.00458,0,0,1,4-4h78.34326L204,73.65674Zm-64-32a4.0002,4.0002,0,0,1-4,4H88a4,4,0,0,1,0-8h48A4.0002,4.0002,0,0,1,140,152Zm0,32a4.0002,4.0002,0,0,1-4,4H88a4,4,0,0,1,0-8h48A4.0002,4.0002,0,0,1,140,184Z"/>
-                </svg>
+        <FileUp strokeWidth={.7} size={110} />
 
                 <h2>Menu/ data in xls or xlsx file</h2>
                 <h2 class="font-bold">Drag and drop your file here</h2>
