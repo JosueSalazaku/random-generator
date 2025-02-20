@@ -130,5 +130,9 @@ async function HandleFileUpload() {
     {#if qrCodeUrl}
     <img src={qrCodeUrl} alt="QR Code" class="flex size-32" />
     {/if}
+    {#if !qrCodeUrl}
     <button on:click={HandleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
+    {/if}
 </main>
+
+
