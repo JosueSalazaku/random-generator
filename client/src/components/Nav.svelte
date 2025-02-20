@@ -47,7 +47,6 @@ onMount(() => {
     <a use:link href="/"  class="font-bold">BiteSpin</a>
     <div class="space-x-4">
         <a use:link href="/about">About</a>
-        <a use:link href="/login">Login/ Sign Up</a>
     </div>
 </nav>
 {/if}
