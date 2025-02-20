@@ -48,7 +48,7 @@ function randomiseProducts() {
     <div class="mt-4">
         <p><strong>Name:</strong> {randomDrink.name}</p>
         <p><strong>Price:</strong> {randomDrink.price}</p>
-        <p><strong>Base Liquor:</strong> {randomDrink.baseLiquor}</p>
+        <!-- <p><strong>Base Liquor:</strong> {randomDrink.baseLiquor}</p> -->
     </div>
     {/if}
     <button on:click={randomiseProducts}>Choose</button>

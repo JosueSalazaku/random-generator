@@ -128,11 +128,18 @@ async function HandleFileUpload() {
         <p class="mt-2 text-xl text-center text-blue-200">{successMessage}</p>
     {/if}
     {#if qrCodeUrl}
-    <img src={qrCodeUrl} alt="QR Code" class="flex size-32" />
+    <img src={qrCodeUrl} alt="QR Code" id="qr-code" class="flex rounded-lg"  />
     {/if}
     {#if !qrCodeUrl}
     <button on:click={HandleFileUpload} aria-label="Upload File" class="self-center w-24 px-4 py-2 transition border-2 rounded-xl hover:bg-violet-600 delay-2000">Upload</button>
     {/if}
 </main>
 
-
+<style>
+    #qr-code {
+      width: 200px; 
+      height: 200px; 
+      padding: 10px; /* Add padding if desired */
+      background-color: #fff; /* Set background color if desired */
+    }
+  </style>
